@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 
 public class PlayerMovement : MonoBehaviour
@@ -20,7 +21,12 @@ public class PlayerMovement : MonoBehaviour
     float PlayerFlyModifer;
 
 
-    private Vector3 playerInput;
+    private Vector3 playerInput = new Vector3(0, 0, 0);
+
+    #region TempVariables
+    private bool playerJumping = false;
+
+    #endregion
 
     #endregion
 
@@ -28,8 +34,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Initializes Player Input vectore
-        playerInput = new Vector3(0,0,0);
+
     }
 
     // Update is called once per frame
@@ -43,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         // Gets Player Input Information
-        AssesPlayerInput();
+        AssesPlayerInput();      
     }
 
     /// <summary>
@@ -67,6 +72,16 @@ public class PlayerMovement : MonoBehaviour
     {
         playerInput.Normalize();
         playerInput *= PlayerWalkingModifer;
+    }
+
+    public void PlayerJump(InputAction.CallbackContext context)
+    {
+        Debug.Log("Jump" + context.phase);
+    }
+
+    public void PlayerFly(InputAction.CallbackContext context)
+    {
+        Debug.Log("Fly" + context.phase);
     }
     #endregion
 }
