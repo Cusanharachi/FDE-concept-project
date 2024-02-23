@@ -160,8 +160,7 @@ MonoBehaviour:
   playerRigidBody: {fileID: 485392307}
   playerJumpModifer: 11.61
   playerFlyModifer: 30.2
-  playerWalkingModifer: 0
-  playerTurnModifier: 0
+  playerMovementModifer: {x: 43.85, y: 1}
   playerViewModifier: 0
 --- !u!54 &485392307
 Rigidbody:

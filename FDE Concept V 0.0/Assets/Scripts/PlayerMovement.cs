@@ -20,10 +20,12 @@ public class PlayerMovement : MonoBehaviour
     float playerJumpModifer;
     [SerializeField, Tooltip("Modifies Player flying power")]
     float playerFlyModifer;
-    [SerializeField, Tooltip("Modifies Player movement in X and Z plane")]
-    float playerWalkingModifer;
-    [SerializeField, Tooltip("Modifies Player rotation about the Y axis")]
-    float playerTurnModifier;
+    //[SerializeField, Tooltip("Modifies Player movement in X and Z plane")]
+    //float playerWalkingModifer;
+    //[SerializeField, Tooltip("Modifies Player rotation about the Y axis")]
+    //float playerTurnModifier;
+    [SerializeField, Tooltip("X modifies player momentum and Y modifies player rotation")]
+    Vector2 playerMovementModifer;
     [SerializeField, Tooltip("Modifies Player view speed rotation")]
     float playerViewModifier;
 
@@ -36,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
     // input action item so this script can handle input
     InputActions inputActions;
+    InputControl inputControl;
 
     // variables that may be handles by other scripts
     #region TempVariables
@@ -58,15 +61,13 @@ public class PlayerMovement : MonoBehaviour
         //inputActions.Standard.Fly.performed += PlayerFly;
         //inputActions.Standard.Fly.canceled += PlayerFall;
         //inputActions.Standard.Movement.performed += PlayerMove;   
-        //inputActions.Standard.Direction.performed += PlayerTurn;
         //inputActions.Standard.ViewControl.performed += PlayerLook;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        //playerRigidBody.AddForce(playerInput, ForceMode.Force);
-
+        PerformPlayerMovements();
     }
 
     // Used specifically to get player input at anytime
@@ -81,16 +82,11 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void AssesPlayerInput()
     {
-        // Puts data into player movement data from Input Manager.
-        //playerInput.x = Input.GetAxis("Horizontal");
-        //playerInput.y = Input.GetAxis("Jump");
-        //playerInput.z = Input.GetAxis("Vertical");
-
+        // gets player input data from the input actions
         playerJumpInput = inputActions.Standard.Jump.ReadValue<float>();
         playerFlyInput = inputActions.Standard.Fly.ReadValue<float>();
         playerMovementInput = inputActions.Standard.Movement.ReadValue<Vector2>();
-        //playerRotationInput = inputActions.Standard.Direction.ReadValue<Vector2>();
-        playerViewInput = inputActions.Standard.ViewControl.ReadValue<Vector2>();
+        playerViewInput = inputActions.Standard.View.ReadValue<Vector2>();
 
         // adjusts new player input
         ModifyPlayerInput();
@@ -101,15 +97,12 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void ModifyPlayerInput()
     {
-        //playerInput.Normalize();
-        //playerInput *= PlayerWalkingModifer;
-
         // applies the modifiers to each of the inputs
-        //playerJumpInput *= playerJumpModifer;
         playerFlyInput *= playerFlyModifer;
-        playerMovementInput *= playerWalkingModifer;
-        playerRotationInput *= playerTurnModifier;
+        playerMovementInput.Scale(new Vector3(playerMovementModifer.x, playerMovementModifer.y, 0));
         playerViewInput *= playerViewModifier;
+
+        Debug.Log(playerFlyInput.ToString() + playerMovementInput.ToString() + playerViewInput.ToString());
     }
 
     /// <summary>
@@ -118,9 +111,6 @@ public class PlayerMovement : MonoBehaviour
     /// <param name="context"> Data that should be passed from the invoking event </param>
     public void MakePlayerJump(InputAction.CallbackContext context)
     {
-        Debug.Log("Jump" + context);
-        //Debug.Log("Jump" + context.ReadValue<float>());
-
         // Applies force to rigidbody based on the product of: the current read in of input, modifer and a standard up vector
         playerRigidBody.AddForce(transform.up * playerJumpModifer, ForceMode.Impulse);
     }
@@ -147,12 +137,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
-
+        playerRigidBody.AddForce(transform.forward * playerMovementInput.x, ForceMode.Force);
     }
 
     private void RotatePlayer()
     {
-
+        playerRigidBody.MoveRotation(Quaternion.FromToRotation(transform.forward, transform.forward + new Vector3(0, playerMovementInput.y, 0)));
     }
 
     #region OldEventBasedInputHandling
