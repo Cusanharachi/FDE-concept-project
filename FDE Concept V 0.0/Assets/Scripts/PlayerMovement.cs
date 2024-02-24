@@ -26,10 +26,6 @@ public class PlayerMovement : MonoBehaviour
     float playerMovementModifer;
     [SerializeField, Tooltip("Modifies Player rotation about the Y axis")]
     float playerRotationModifier;
-    
-    // Moving to a different script
-    //[SerializeField, Tooltip("Modifies Player view speed rotation")]
-    //float playerViewModifier;
 
     // Fields for recieved player input
     private float playerJumpInput = new float();
@@ -42,9 +38,6 @@ public class PlayerMovement : MonoBehaviour
     private float modifiedPlayerFlyInput = new float();
     private float modifiedPlayerMovementInput = new float();
     private float modifiedPlayerRotationInput = new float();
-
-    // Moving out to a different script
-    //private Vector3 playerViewInput = new Vector2(0, 0);
 
     // Input action item so this script can handle input
     InputActions inputActions;
@@ -67,15 +60,14 @@ public class PlayerMovement : MonoBehaviour
         inputActions = new InputActions();
         inputActions.Standard.Enable();
         inputActions.Standard.Jump.performed += MakePlayerJump;
-        //inputActions.Standard.Fly.performed += PlayerFly;
+        inputActions.Standard.Fly.performed += PlayerFly;
         inputActions.Standard.Fly.canceled += PlayerFall;
-        //inputActions.Standard.Movement.performed += PlayerMove;
-        //inputActions.Standard.ViewControl.performed += PlayerLook;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        // Performs movements to player base on inputs, modifiers, and other method logic
         PerformPlayerMovements();
     }
 
@@ -96,9 +88,6 @@ public class PlayerMovement : MonoBehaviour
         playerFlyInput = inputActions.Standard.Fly.ReadValue<float>();
         playerMovementInput = inputActions.Standard.Movement.ReadValue<float>();
         playerRotationInput = inputActions.Standard.Rotation.ReadValue<float>();
-        
-        // Moving out to a different script
-        //playerViewInput = inputActions.Standard.View.ReadValue<Vector2>();
 
         // Adjusts new player input
         ModifyPlayerInput();
@@ -114,22 +103,6 @@ public class PlayerMovement : MonoBehaviour
         modifiedPlayerFlyInput = playerFlyModifer * playerFlyInput;
         modifiedPlayerMovementInput = playerMovementInput * playerMovementModifer;
         modifiedPlayerRotationInput = playerRotationInput * playerRotationModifier;
-
-        // Changed how movement input works ... again whoops that is learning for you
-        //playerMovementInput.Scale(new Vector3(playerMovementModifer, playerTurnModifier, 0));
-
-        // Moving out to a different script
-        //playerViewInput *= playerViewModifier;
-    }
-
-    /// <summary>
-    /// Event Style method that makes player jump on event
-    /// </summary>
-    /// <param name="context"> Data that should be passed from the invoking event </param>
-    public void MakePlayerJump(InputAction.CallbackContext context)
-    {
-        // Applies force to rigidbody based on the product of: the current read in of input, modifer and a standard up vector
-        playerRigidbody.AddForce(transform.up * playerJumpModifer, ForceMode.Impulse);
     }
 
     /// <summary>
@@ -144,6 +117,16 @@ public class PlayerMovement : MonoBehaviour
 
         // Removing to a different script
         //RotateView();
+    }
+
+    /// <summary>
+    /// Event Style method that makes player jump on event
+    /// </summary>
+    /// <param name="context"> Data that should be passed from the invoking event </param>
+    public void MakePlayerJump(InputAction.CallbackContext context)
+    {
+        // Applies force to rigidbody based on the product of: the current read in of input, modifer and a standard up vector
+        playerRigidbody.AddForce(transform.up * playerJumpModifer, ForceMode.Impulse);
     }
 
     /// <summary>
@@ -185,22 +168,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// An event style method that causes the player to jump
-    /// </summary>
-    /// <param name="context"></param>
-    public void PlayerJump(InputAction.CallbackContext context)
-    {
-        // Gathers jump input data
-        playerJumpInput = context.ReadValue<float>();
-
-        // Modifies player jump input
-        modifiedPlayerJumpInput = playerJumpInput * playerJumpModifer;
-
-        // Applies modified input to a force
-        playerRigidbody.AddForce(transform.up * modifiedPlayerJumpInput, ForceMode.Impulse);
-    }
-
-    /// <summary>
     /// An event style method that toggles the state of whether or not the player is flying
     /// </summary>
     /// <param name="context"></param>
@@ -225,87 +192,5 @@ public class PlayerMovement : MonoBehaviour
             playerFlying = false;
         }
     }
-
-
-    // code to be removed
-    #region Code that may be removed
-    // Moving into a seperate script \/ \/ \/ \/ \/ 
-
-    /// <summary>
-    /// may be moved out to a seperate camera script
-    /// </summary>
-    //private void RotateView()
-    //{
-    //    //playerRigidBody.MoveRotation(Quaternion.FromToRotation(transform.forward, transform.forward + new Vector3(0, playerMovementInput.y, 0)));
-    //    //playerCamera.transform.rotation.SetFromToRotation(playerCamera.transform.forward, playerCamera.transform.forward + new Vector3(playerViewInput.x, playerViewInput.y, 0));
-    //    //Camera.main.transform.rotation.SetFromToRotation(playerCamera.transform.forward, playerCamera.transform.forward + new Vector3(playerViewInput.x, playerViewInput.y, 0));
-    //    //playerCamera.transform.Rotate(new Vector3(playerViewInput.y, 0, 0));
-    //    //playerCamera.transform.Rotate(new Vector3(0, playerViewInput.x, 0));
-
-    //    // creates a vector 3 for the camera rotation
-    //    // ** when it its own script move fields out to save on performance
-    //    Vector3 newCameraRotation = (new Vector3(playerViewInput.x, 0, 0));
-    //    //newCameraRotation.Normalize();
-
-    //    playerCamera.transform.rotation = Quaternion.LookRotation(newCameraRotation);
-    //}
-
-    #region OldEventBasedInputHandling
-    //public void PlayerJump(InputAction.CallbackContext  context)
-    //{
-    //    //Debug.Log("Jump" + context);
-    //    //Debug.Log("Jump" + context.ReadValue<float>());
-
-    //    //playerRigidBody.AddForce(transform.up * context.ReadValue<float>() * playerJumpModifer, ForceMode.Impulse);
-    //}
-
-    //public void PlayerFly(InputAction.CallbackContext context)
-    //{
-    //    //if (!playerFlying)
-    //    //{
-    //    //    Debug.Log("Fly" + context);
-    //    //    //playerRigidBody.AddForce(transform.up * context.ReadValue<float>() * playerFlyModifer, ForceMode.Force);
-    //    //    playerFlying = true;
-    //    //    StartCoroutine(PlayerFlying(context.ReadValue<float>()));
-    //    //}
-    //}
-
-    //public void PlayerFall(InputAction.CallbackContext context)
-    //{
-    //    //if (playerFlying)
-    //    //{
-    //    //    Debug.Log("Fall" + context);
-    //    //    playerFlying = false;
-    //    //}
-    //}
-
-    //IEnumerator PlayerFlying(float inputValue)
-    //{
-    //    while (playerFlying)
-    //    {
-    //        Debug.Log("- - - - - - - - - - - - - - - - - - - - ");
-    //        playerRigidBody.AddForce(transform.up * inputValue * playerFlyModifer, ForceMode.Force);
-    //        yield return new WaitForFixedUpdate();
-    //    }
-    //    yield return null;
-    //}
-
-    public void PlayerMove(InputAction.CallbackContext context)
-    {
-        //Debug.Log("Player Movement: " + inputActions.Standard.Movement.ReadValueAsObject());
-        //Debug.Log("Move" + context);
-    }
-
-    public void PlayerTurn(InputAction.CallbackContext context)
-    {
-        //Debug.Log("Turn" + context);
-    }
-
-    public void PlayerLook(InputAction.CallbackContext context)
-    {
-        // Debug.Log("Look" + context);
-    }
-    #endregion
-    #endregion
     #endregion
 }
