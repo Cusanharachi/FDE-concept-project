@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "D:\\GameDesignProjects\\Repositories\\FDE Concept V 0.0\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{74047211-17B9-C6D1-DA77-62D5D3CF84B2}|Assembly-CSharp.csproj|d:\\gamedesignprojects\\repositories\\fde concept v 0.0\\assets\\scripts\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{74047211-17B9-C6D1-DA77-62D5D3CF84B2}|Assembly-CSharp.csproj|D:\\GameDesignProjects\\Repositories\\FDE Concept V 0.0\\assets\\scripts\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{74047211-17B9-C6D1-DA77-62D5D3CF84B2}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74047211-17B9-C6D1-DA77-62D5D3CF84B2}|Assembly-CSharp.csproj|d:\\gamedesignprojects\\repositories\\fde concept v 0.0\\assets\\inputsystem\\inputactions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{74047211-17B9-C6D1-DA77-62D5D3CF84B2}|Assembly-CSharp.csproj|solutionrelative:assets\\inputsystem\\inputactions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{74047211-17B9-C6D1-DA77-62D5D3CF84B2}|Assembly-CSharp.csproj|D:\\GameDesignProjects\\Repositories\\FDE Concept V 0.0\\assets\\scripts\\playerstats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{74047211-17B9-C6D1-DA77-62D5D3CF84B2}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playerstats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{74047211-17B9-C6D1-DA77-62D5D3CF84B2}|Assembly-CSharp.csproj|D:\\GameDesignProjects\\Repositories\\FDE Concept V 0.0\\assets\\inputsystem\\inputactions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{74047211-17B9-C6D1-DA77-62D5D3CF84B2}|Assembly-CSharp.csproj|solutionrelative:assets\\inputsystem\\inputactions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -36,14 +36,14 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerMovement.cs",
               "ToolTip": "D:\\GameDesignProjects\\Repositories\\FDE Concept V 0.0\\Assets\\Scripts\\PlayerMovement.cs",
               "RelativeToolTip": "Assets\\Scripts\\PlayerMovement.cs",
-              "ViewState": "AQIAAEkAAACAl5mZmRktwFUAAABIAAAA",
+              "ViewState": "AQIAAIMAAAAAAAAAAAAowKYAAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-02-22T15:59:40.191Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "InputActions.cs",
               "DocumentMoniker": "D:\\GameDesignProjects\\Repositories\\FDE Concept V 0.0\\Assets\\InputSystem\\InputActions.cs",
               "RelativeDocumentMoniker": "Assets\\InputSystem\\InputActions.cs",
@@ -51,11 +51,12 @@
               "RelativeToolTip": "Assets\\InputSystem\\InputActions.cs",
               "ViewState": "AQIAALgBAAAAAAAAAAAIwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-22T19:24:54.105Z"
+              "WhenOpened": "2024-02-22T19:24:54.105Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "PlayerStats.cs",
               "DocumentMoniker": "D:\\GameDesignProjects\\Repositories\\FDE Concept V 0.0\\Assets\\Scripts\\PlayerStats.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerStats.cs",

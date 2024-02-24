@@ -158,10 +158,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerRigidBody: {fileID: 485392307}
+  playerCamera: {fileID: 963194227}
   playerJumpModifer: 11.61
   playerFlyModifer: 30.2
-  playerMovementModifer: {x: 43.85, y: 1}
-  playerViewModifier: 0
+  playerWalkingModifer: 40
+  playerTurnModifier: 1
+  playerViewModifier: 1
 --- !u!54 &485392307
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -337,16 +339,12 @@ MonoBehaviour:
     m_ActionName: New action map/Fly[/Keyboard/space,/DualShock4GamepadHID/buttonSouth]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: ed292d11-ef51-421b-a512-28a5b9ef9ece
-    m_ActionName: Standard/Movement[/DualShock4GamepadHID/leftStick/down,/Keyboard/s,/DualShock4GamepadHID/leftStick/up,/Keyboard/w]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: a86360af-48dc-4362-9c3b-b3aea8a5fa5a
-    m_ActionName: Standard/Direction[/DualShock4GamepadHID/leftStick/left,/Keyboard/a,/DualShock4GamepadHID/leftStick/right,/Keyboard/d]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: 9391309f-afeb-4474-93e7-a2c917d42b78
     m_ActionName: Standard/ViewControl[/DualShock4GamepadHID/rightStick/up,/Mouse/delta/up,/DualShock4GamepadHID/rightStick/down,/Mouse/delta/down,/DualShock4GamepadHID/rightStick/left,/Mouse/delta/left,/DualShock4GamepadHID/rightStick/right,/Mouse/delta/right]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: cc580391-df23-4313-8798-ba7e2b3b3d37
+    m_ActionName: Standard/Movement[/DualShock4GamepadHID/leftStick/up,/Keyboard/w,/DualShock4GamepadHID/leftStick/down,/Keyboard/s,/DualShock4GamepadHID/leftStick/left,/Keyboard/a,/DualShock4GamepadHID/leftStick/right,/Keyboard/d]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Standard

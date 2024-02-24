@@ -14,18 +14,20 @@ public class PlayerMovement : MonoBehaviour
     // player specific data
     [SerializeField]
     Rigidbody playerRigidBody;
+    [SerializeField, Tooltip("Camera used for specific player")]
+    Camera playerCamera;
 
     // modifiers for player input
     [SerializeField, Tooltip("Modifies Player jumping power")]
     float playerJumpModifer;
     [SerializeField, Tooltip("Modifies Player flying power")]
     float playerFlyModifer;
-    //[SerializeField, Tooltip("Modifies Player movement in X and Z plane")]
-    //float playerWalkingModifer;
-    //[SerializeField, Tooltip("Modifies Player rotation about the Y axis")]
-    //float playerTurnModifier;
-    [SerializeField, Tooltip("X modifies player momentum and Y modifies player rotation")]
-    Vector2 playerMovementModifer;
+    [SerializeField, Tooltip("Modifies Player movement forward and backward")]
+    float playerWalkingModifer;
+    [SerializeField, Tooltip("Modifies Player rotation about the Y axis")]
+    float playerTurnModifier;
+    //[SerializeField, Tooltip("X modifies player momentum and Y modifies player rotation")]
+    //Vector2 playerMovementModifer;
     [SerializeField, Tooltip("Modifies Player view speed rotation")]
     float playerViewModifier;
 
@@ -38,7 +40,6 @@ public class PlayerMovement : MonoBehaviour
 
     // input action item so this script can handle input
     InputActions inputActions;
-    InputControl inputControl;
 
     // variables that may be handles by other scripts
     #region TempVariables
@@ -59,8 +60,8 @@ public class PlayerMovement : MonoBehaviour
         inputActions.Standard.Enable();
         inputActions.Standard.Jump.performed += MakePlayerJump;
         //inputActions.Standard.Fly.performed += PlayerFly;
-        //inputActions.Standard.Fly.canceled += PlayerFall;
-        //inputActions.Standard.Movement.performed += PlayerMove;   
+        inputActions.Standard.Fly.canceled += PlayerFall;
+        //inputActions.Standard.Movement.performed += PlayerMove;
         //inputActions.Standard.ViewControl.performed += PlayerLook;
     }
 
@@ -99,10 +100,10 @@ public class PlayerMovement : MonoBehaviour
     {
         // applies the modifiers to each of the inputs
         playerFlyInput *= playerFlyModifer;
-        playerMovementInput.Scale(new Vector3(playerMovementModifer.x, playerMovementModifer.y, 0));
+        playerMovementInput.Scale(new Vector3(playerWalkingModifer, playerTurnModifier, 0));
         playerViewInput *= playerViewModifier;
 
-        Debug.Log(playerFlyInput.ToString() + playerMovementInput.ToString() + playerViewInput.ToString());
+        //Debug.Log(playerFlyInput.ToString() + playerMovementInput.ToString() + playerViewInput.ToString());
     }
 
     /// <summary>
@@ -124,6 +125,7 @@ public class PlayerMovement : MonoBehaviour
         MakePlayerFly();
         MovePlayer();
         RotatePlayer();
+        RotateView();
     }
 
     /// <summary>
@@ -140,9 +142,31 @@ public class PlayerMovement : MonoBehaviour
         playerRigidBody.AddForce(transform.forward * playerMovementInput.x, ForceMode.Force);
     }
 
+    /// <summary>
+    /// Applies to modified input to the rotation of the player.
+    /// </summary>
     private void RotatePlayer()
     {
-        playerRigidBody.MoveRotation(Quaternion.FromToRotation(transform.forward, transform.forward + new Vector3(0, playerMovementInput.y, 0)));
+        playerRigidBody.MoveRotation(Quaternion.FromToRotation(transform.forward, transform.forward + new Vector3(playerMovementInput.y, 0, 0)));
+    }
+
+    /// <summary>
+    /// may be moved out to a seperate camera script
+    /// </summary>
+    private void RotateView()
+    {
+        //playerRigidBody.MoveRotation(Quaternion.FromToRotation(transform.forward, transform.forward + new Vector3(0, playerMovementInput.y, 0)));
+        //playerCamera.transform.rotation.SetFromToRotation(playerCamera.transform.forward, playerCamera.transform.forward + new Vector3(playerViewInput.x, playerViewInput.y, 0));
+        //Camera.main.transform.rotation.SetFromToRotation(playerCamera.transform.forward, playerCamera.transform.forward + new Vector3(playerViewInput.x, playerViewInput.y, 0));
+        //playerCamera.transform.Rotate(new Vector3(playerViewInput.y, 0, 0));
+        //playerCamera.transform.Rotate(new Vector3(0, playerViewInput.x, 0));
+
+        // creates a vector 3 for the camera rotation
+        // ** when it its own script move fields out to save on performance
+        Vector3 newCameraRotation = (new Vector3(playerViewInput.x, 0, 0));
+        //newCameraRotation.Normalize();
+
+        playerCamera.transform.rotation = Quaternion.LookRotation(newCameraRotation);
     }
 
     #region OldEventBasedInputHandling
@@ -187,6 +211,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void PlayerMove(InputAction.CallbackContext context)
     {
+        Debug.Log("Player Movement: " + inputActions.Standard.Movement.ReadValueAsObject());
         //Debug.Log("Move" + context);
     }
 
