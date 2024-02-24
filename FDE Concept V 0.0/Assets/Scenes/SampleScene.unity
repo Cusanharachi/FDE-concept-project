@@ -157,13 +157,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73d7f4562b467344d89819de197cc66a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerRigidBody: {fileID: 485392307}
+  playerRigidbody: {fileID: 485392307}
   playerCamera: {fileID: 963194227}
-  playerJumpModifer: 11.61
+  playerJumpModifer: 47.9
   playerFlyModifer: 30.2
-  playerWalkingModifer: 40
-  playerTurnModifier: 1
-  playerViewModifier: 1
+  playerMovementModifer: 100.5
+  playerRotationModifier: 95.5
 --- !u!54 &485392307
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -173,7 +172,7 @@ Rigidbody:
   m_GameObject: {fileID: 485392305}
   serializedVersion: 4
   m_Mass: 5
-  m_Drag: 0
+  m_Drag: 0.23
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}

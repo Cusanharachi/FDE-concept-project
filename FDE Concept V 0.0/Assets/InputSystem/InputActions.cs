@@ -49,7 +49,16 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""name"": ""Movement"",
                     ""type"": ""PassThrough"",
                     ""id"": ""cc580391-df23-4313-8798-ba7e2b3b3d37"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Rotation"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""28711a93-a7f8-498e-ba40-2ec3fb8c8412"",
+                    ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -91,7 +100,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""2c5a7eee-cf1b-49fc-8eae-63c6ec6c21d9"",
                     ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": ""Hold(duration=0.5)"",
                     ""processors"": """",
                     ""groups"": ""GamePad"",
                     ""action"": ""Fly"",
@@ -102,7 +111,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""b13bb7fc-68aa-4e51-8c7c-90b571e08ab6"",
                     ""path"": ""<Keyboard>/space"",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": ""Hold(duration=0.6)"",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
                     ""action"": ""Fly"",
@@ -123,7 +132,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""up"",
                     ""id"": ""1c5021df-94d7-426b-b437-e76f48d8747f"",
-                    ""path"": ""<Gamepad>/rightStick/up"",
+                    ""path"": ""<Gamepad>/rightStick/y"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""GamePad"",
@@ -145,7 +154,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""down"",
                     ""id"": ""88540ed5-a367-4347-b735-773b2ddb5d01"",
-                    ""path"": ""<Gamepad>/rightStick/down"",
+                    ""path"": ""<Gamepad>/rightStick/y"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""GamePad"",
@@ -167,7 +176,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""left"",
                     ""id"": ""34fdb4b3-df46-49fd-aeff-6d6cde4492f0"",
-                    ""path"": ""<Gamepad>/rightStick/left"",
+                    ""path"": ""<Gamepad>/rightStick/x"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""GamePad"",
@@ -189,7 +198,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""right"",
                     ""id"": ""5888f538-0d0b-4c74-9a7b-6fffd7068e8a"",
-                    ""path"": ""<Gamepad>/rightStick/right"",
+                    ""path"": ""<Gamepad>/rightStick/x"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""GamePad"",
@@ -209,9 +218,20 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""2D Vector"",
-                    ""id"": ""caaca51c-e649-4490-a54f-bf7c0c16df50"",
-                    ""path"": ""2DVector(mode=2)"",
+                    ""name"": """",
+                    ""id"": ""cf59ac9f-9d01-4ae0-9499-e645b2ff8b55"",
+                    ""path"": ""<Gamepad>/leftStick/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""GamePad"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""1dccfdff-6924-463d-94ae-5d24b45eb364"",
+                    ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -220,19 +240,8 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""right"",
-                    ""id"": ""914ee7d8-eff0-4d53-9601-888ff169c60d"",
-                    ""path"": ""<Gamepad>/leftStick/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""GamePad"",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""919bf3aa-e30e-46ec-9743-7e6964ef6918"",
+                    ""name"": ""positive"",
+                    ""id"": ""866feef5-04e3-4184-9cf7-5de500cac26f"",
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -242,19 +251,8 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""left"",
-                    ""id"": ""82a5753a-afaa-4079-b8a1-8bfd31622b39"",
-                    ""path"": ""<Gamepad>/leftStick/down"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""GamePad"",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""3c8a2252-5cb2-404b-b9e5-aef65b96ef23"",
+                    ""name"": ""negative"",
+                    ""id"": ""6e06346e-df1e-4d76-a487-fe4c761624c9"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -264,46 +262,46 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""up"",
-                    ""id"": ""aaacd436-1b62-4b3a-bd3b-bff6fef7ca9e"",
-                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""name"": """",
+                    ""id"": ""75e738f2-0541-4730-96e1-2f503d870216"",
+                    ""path"": ""<Gamepad>/leftStick/x"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""GamePad"",
-                    ""action"": ""Movement"",
+                    ""action"": ""Rotation"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
+                    ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""up"",
-                    ""id"": ""fc0f16b0-45e7-4c2c-ab8b-b6c2d054550b"",
+                    ""name"": ""A and D keyboard"",
+                    ""id"": ""1ff4bb5d-e928-4217-9b3f-01e64d16787f"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotation"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""7dcb45b4-6042-4900-96d0-e0d34a89c2ee"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""Movement"",
+                    ""action"": ""Rotation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""down"",
-                    ""id"": ""dc992249-4eae-416b-b03d-05541bb24ab3"",
-                    ""path"": ""<Gamepad>/leftStick/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""GamePad"",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""8ecc1901-4e25-431f-bf59-688b39b32980"",
+                    ""name"": ""positive"",
+                    ""id"": ""5da64cdc-bfef-4135-9b1b-5ac039f07b7e"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""Movement"",
+                    ""action"": ""Rotation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 }
@@ -345,6 +343,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Standard_Jump = m_Standard.FindAction("Jump", throwIfNotFound: true);
         m_Standard_Fly = m_Standard.FindAction("Fly", throwIfNotFound: true);
         m_Standard_Movement = m_Standard.FindAction("Movement", throwIfNotFound: true);
+        m_Standard_Rotation = m_Standard.FindAction("Rotation", throwIfNotFound: true);
         m_Standard_View = m_Standard.FindAction("View", throwIfNotFound: true);
     }
 
@@ -410,6 +409,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Standard_Jump;
     private readonly InputAction m_Standard_Fly;
     private readonly InputAction m_Standard_Movement;
+    private readonly InputAction m_Standard_Rotation;
     private readonly InputAction m_Standard_View;
     public struct StandardActions
     {
@@ -418,6 +418,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Standard_Jump;
         public InputAction @Fly => m_Wrapper.m_Standard_Fly;
         public InputAction @Movement => m_Wrapper.m_Standard_Movement;
+        public InputAction @Rotation => m_Wrapper.m_Standard_Rotation;
         public InputAction @View => m_Wrapper.m_Standard_View;
         public InputActionMap Get() { return m_Wrapper.m_Standard; }
         public void Enable() { Get().Enable(); }
@@ -437,6 +438,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Movement.started += instance.OnMovement;
             @Movement.performed += instance.OnMovement;
             @Movement.canceled += instance.OnMovement;
+            @Rotation.started += instance.OnRotation;
+            @Rotation.performed += instance.OnRotation;
+            @Rotation.canceled += instance.OnRotation;
             @View.started += instance.OnView;
             @View.performed += instance.OnView;
             @View.canceled += instance.OnView;
@@ -453,6 +457,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Movement.started -= instance.OnMovement;
             @Movement.performed -= instance.OnMovement;
             @Movement.canceled -= instance.OnMovement;
+            @Rotation.started -= instance.OnRotation;
+            @Rotation.performed -= instance.OnRotation;
+            @Rotation.canceled -= instance.OnRotation;
             @View.started -= instance.OnView;
             @View.performed -= instance.OnView;
             @View.canceled -= instance.OnView;
@@ -496,6 +503,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnFly(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
+        void OnRotation(InputAction.CallbackContext context);
         void OnView(InputAction.CallbackContext context);
     }
 }

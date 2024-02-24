@@ -8,40 +8,48 @@ using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class PlayerMovement : MonoBehaviour
 {
-    // all variebles for the Player Movement class
-    #region Variables
+    // All variebles for the Player Movement class
+    #region Fields
 
-    // player specific data
+    // Player object specific data
     [SerializeField]
-    Rigidbody playerRigidBody;
+    Rigidbody playerRigidbody;
     [SerializeField, Tooltip("Camera used for specific player")]
     Camera playerCamera;
 
-    // modifiers for player input
+    // Modifiers for player input
     [SerializeField, Tooltip("Modifies Player jumping power")]
     float playerJumpModifer;
     [SerializeField, Tooltip("Modifies Player flying power")]
     float playerFlyModifer;
     [SerializeField, Tooltip("Modifies Player movement forward and backward")]
-    float playerWalkingModifer;
+    float playerMovementModifer;
     [SerializeField, Tooltip("Modifies Player rotation about the Y axis")]
-    float playerTurnModifier;
-    //[SerializeField, Tooltip("X modifies player momentum and Y modifies player rotation")]
-    //Vector2 playerMovementModifer;
-    [SerializeField, Tooltip("Modifies Player view speed rotation")]
-    float playerViewModifier;
+    float playerRotationModifier;
+    
+    // Moving to a different script
+    //[SerializeField, Tooltip("Modifies Player view speed rotation")]
+    //float playerViewModifier;
 
-    // fields for recieved player input
+    // Fields for recieved player input
     private float playerJumpInput = new float();
     private float playerFlyInput = new float();
-    private Vector3 playerMovementInput = new Vector2(0, 0);
-    private Vector3 playerRotationInput = new Vector2(0, 0);
-    private Vector3 playerViewInput = new Vector2(0, 0);
+    private float playerMovementInput = new float();
+    private float playerRotationInput = new float();
 
-    // input action item so this script can handle input
+    // Fields for player input after modification
+    private float modifiedPlayerJumpInput = new float();
+    private float modifiedPlayerFlyInput = new float();
+    private float modifiedPlayerMovementInput = new float();
+    private float modifiedPlayerRotationInput = new float();
+
+    // Moving out to a different script
+    //private Vector3 playerViewInput = new Vector2(0, 0);
+
+    // Input action item so this script can handle input
     InputActions inputActions;
 
-    // variables that may be handles by other scripts
+    // Variables that may be handled by other script(s)
     #region TempVariables
     private bool playerJumping = false;
     private bool playerFlying = false;
@@ -49,13 +57,13 @@ public class PlayerMovement : MonoBehaviour
 
     #endregion
 
-    // all methods for the Player Movement Class
+    // All methods for the Player Movement Class
     #region Methods
 
     // Start is called before the first frame update
     void Awake()
     {
-        // initiallizes all of the inputs to this class.
+        // Initiallizes all of the inputs to this class.
         inputActions = new InputActions();
         inputActions.Standard.Enable();
         inputActions.Standard.Jump.performed += MakePlayerJump;
@@ -75,21 +83,24 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         // Gets Player Input Information
-        AssesPlayerInput();      
+        ManagePlayerInput();      
     }
 
     /// <summary>
     /// Used to gather player input data.
     /// </summary>
-    private void AssesPlayerInput()
+    private void ManagePlayerInput()
     {
-        // gets player input data from the input actions
+        // Gets player input data from the input actions
         playerJumpInput = inputActions.Standard.Jump.ReadValue<float>();
         playerFlyInput = inputActions.Standard.Fly.ReadValue<float>();
-        playerMovementInput = inputActions.Standard.Movement.ReadValue<Vector2>();
-        playerViewInput = inputActions.Standard.View.ReadValue<Vector2>();
+        playerMovementInput = inputActions.Standard.Movement.ReadValue<float>();
+        playerRotationInput = inputActions.Standard.Rotation.ReadValue<float>();
+        
+        // Moving out to a different script
+        //playerViewInput = inputActions.Standard.View.ReadValue<Vector2>();
 
-        // adjusts new player input
+        // Adjusts new player input
         ModifyPlayerInput();
     }
 
@@ -98,12 +109,17 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void ModifyPlayerInput()
     {
-        // applies the modifiers to each of the inputs
-        playerFlyInput *= playerFlyModifer;
-        playerMovementInput.Scale(new Vector3(playerWalkingModifer, playerTurnModifier, 0));
-        playerViewInput *= playerViewModifier;
+        // Applies the modifiers to each of the inputs
+        modifiedPlayerJumpInput = playerJumpModifer * playerJumpInput;
+        modifiedPlayerFlyInput = playerFlyModifer * playerFlyInput;
+        modifiedPlayerMovementInput = playerMovementInput * playerMovementModifer;
+        modifiedPlayerRotationInput = playerRotationInput * playerRotationModifier;
 
-        //Debug.Log(playerFlyInput.ToString() + playerMovementInput.ToString() + playerViewInput.ToString());
+        // Changed how movement input works ... again whoops that is learning for you
+        //playerMovementInput.Scale(new Vector3(playerMovementModifer, playerTurnModifier, 0));
+
+        // Moving out to a different script
+        //playerViewInput *= playerViewModifier;
     }
 
     /// <summary>
@@ -113,11 +129,11 @@ public class PlayerMovement : MonoBehaviour
     public void MakePlayerJump(InputAction.CallbackContext context)
     {
         // Applies force to rigidbody based on the product of: the current read in of input, modifer and a standard up vector
-        playerRigidBody.AddForce(transform.up * playerJumpModifer, ForceMode.Impulse);
+        playerRigidbody.AddForce(transform.up * playerJumpModifer, ForceMode.Impulse);
     }
 
     /// <summary>
-    /// calls necesary methods to make the player move
+    /// Calls necesary methods to make the player move
     /// </summary>
     public void PerformPlayerMovements()
     {
@@ -125,7 +141,9 @@ public class PlayerMovement : MonoBehaviour
         MakePlayerFly();
         MovePlayer();
         RotatePlayer();
-        RotateView();
+
+        // Removing to a different script
+        //RotateView();
     }
 
     /// <summary>
@@ -133,41 +151,104 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void MakePlayerFly()
     {
-        // Applies force to rigidbody based on the product of: a standard up vector and the (hopefuly) modified player input.
-        playerRigidBody.AddForce(transform.up * playerFlyInput, ForceMode.Force);
-    }
+        // Returns from method if player is not actually flying
+        if (!playerFlying)
+        {
+            return;
+        }
 
-    private void MovePlayer()
-    {
-        playerRigidBody.AddForce(transform.forward * playerMovementInput.x, ForceMode.Force);
+        // Applies force to rigidbody based on the product of: a standard up vector and the modified player input.
+        playerRigidbody.AddForce(transform.up * modifiedPlayerFlyInput, ForceMode.Force);
     }
 
     /// <summary>
-    /// Applies to modified input to the rotation of the player.
+    /// Handles necessary Logic when the player is moving
+    /// </summary>
+    private void MovePlayer()
+    {
+        // Applies force to rigidbody based on the prodcut of: a standard forward vector and the modified player input.
+        playerRigidbody.AddForce(transform.forward * modifiedPlayerMovementInput, ForceMode.Force);
+    }
+
+    /// <summary>
+    /// Handles necessary logic when the player is rotating
     /// </summary>
     private void RotatePlayer()
     {
-        playerRigidBody.MoveRotation(Quaternion.FromToRotation(transform.forward, transform.forward + new Vector3(playerMovementInput.y, 0, 0)));
+        // Applies force to rigidbody based on a standard forward vector and the product of: a standard forward vector and the modified player input
+        //playerRigidBody.MoveRotation(Quaternion.FromToRotation(transform.forward, transform.forward + new Vector3(modifiedPlayerRotationInput, 0, 0)));
+
+        Vector3 playerRotationAdjustment = new Vector3(0, modifiedPlayerRotationInput, 0);
+
+        Quaternion modifiedRotation = Quaternion.Euler(playerRotationAdjustment * Time.fixedDeltaTime);
+        playerRigidbody.MoveRotation(playerRigidbody.rotation * modifiedRotation);
     }
+
+    /// <summary>
+    /// An event style method that causes the player to jump
+    /// </summary>
+    /// <param name="context"></param>
+    public void PlayerJump(InputAction.CallbackContext context)
+    {
+        // Gathers jump input data
+        playerJumpInput = context.ReadValue<float>();
+
+        // Modifies player jump input
+        modifiedPlayerJumpInput = playerJumpInput * playerJumpModifer;
+
+        // Applies modified input to a force
+        playerRigidbody.AddForce(transform.up * modifiedPlayerJumpInput, ForceMode.Impulse);
+    }
+
+    /// <summary>
+    /// An event style method that toggles the state of whether or not the player is flying
+    /// </summary>
+    /// <param name="context"></param>
+    public void PlayerFly(InputAction.CallbackContext context)
+    {
+        if (!playerFlying)
+        {
+            Debug.Log("Fly" + context);
+            playerFlying = true;
+        }
+    }
+
+    /// <summary>
+    /// An event style method that toggles the state of whether or not they player is flying
+    /// </summary>
+    /// <param name="context"></param>
+    public void PlayerFall(InputAction.CallbackContext context)
+    {
+        if (playerFlying)
+        {
+            Debug.Log("Fall" + context);
+            playerFlying = false;
+        }
+    }
+
+
+    // code to be removed
+    #region Code that may be removed
+    // Moving into a seperate script \/ \/ \/ \/ \/ 
 
     /// <summary>
     /// may be moved out to a seperate camera script
     /// </summary>
-    private void RotateView()
-    {
-        //playerRigidBody.MoveRotation(Quaternion.FromToRotation(transform.forward, transform.forward + new Vector3(0, playerMovementInput.y, 0)));
-        //playerCamera.transform.rotation.SetFromToRotation(playerCamera.transform.forward, playerCamera.transform.forward + new Vector3(playerViewInput.x, playerViewInput.y, 0));
-        //Camera.main.transform.rotation.SetFromToRotation(playerCamera.transform.forward, playerCamera.transform.forward + new Vector3(playerViewInput.x, playerViewInput.y, 0));
-        //playerCamera.transform.Rotate(new Vector3(playerViewInput.y, 0, 0));
-        //playerCamera.transform.Rotate(new Vector3(0, playerViewInput.x, 0));
+    //private void RotateView()
+    //{
+    //    //playerRigidBody.MoveRotation(Quaternion.FromToRotation(transform.forward, transform.forward + new Vector3(0, playerMovementInput.y, 0)));
+    //    //playerCamera.transform.rotation.SetFromToRotation(playerCamera.transform.forward, playerCamera.transform.forward + new Vector3(playerViewInput.x, playerViewInput.y, 0));
+    //    //Camera.main.transform.rotation.SetFromToRotation(playerCamera.transform.forward, playerCamera.transform.forward + new Vector3(playerViewInput.x, playerViewInput.y, 0));
+    //    //playerCamera.transform.Rotate(new Vector3(playerViewInput.y, 0, 0));
+    //    //playerCamera.transform.Rotate(new Vector3(0, playerViewInput.x, 0));
 
-        // creates a vector 3 for the camera rotation
-        // ** when it its own script move fields out to save on performance
-        Vector3 newCameraRotation = (new Vector3(playerViewInput.x, 0, 0));
-        //newCameraRotation.Normalize();
+    //    // creates a vector 3 for the camera rotation
+    //    // ** when it its own script move fields out to save on performance
+    //    Vector3 newCameraRotation = (new Vector3(playerViewInput.x, 0, 0));
+    //    //newCameraRotation.Normalize();
 
-        playerCamera.transform.rotation = Quaternion.LookRotation(newCameraRotation);
-    }
+    //    playerCamera.transform.rotation = Quaternion.LookRotation(newCameraRotation);
+    //}
 
     #region OldEventBasedInputHandling
     //public void PlayerJump(InputAction.CallbackContext  context)
@@ -178,25 +259,25 @@ public class PlayerMovement : MonoBehaviour
     //    //playerRigidBody.AddForce(transform.up * context.ReadValue<float>() * playerJumpModifer, ForceMode.Impulse);
     //}
 
-    public void PlayerFly(InputAction.CallbackContext context)
-    {
-        //if (!playerFlying)
-        //{
-        //    Debug.Log("Fly" + context);
-        //    //playerRigidBody.AddForce(transform.up * context.ReadValue<float>() * playerFlyModifer, ForceMode.Force);
-        //    playerFlying = true;
-        //    StartCoroutine(PlayerFlying(context.ReadValue<float>()));
-        //}
-    }
+    //public void PlayerFly(InputAction.CallbackContext context)
+    //{
+    //    //if (!playerFlying)
+    //    //{
+    //    //    Debug.Log("Fly" + context);
+    //    //    //playerRigidBody.AddForce(transform.up * context.ReadValue<float>() * playerFlyModifer, ForceMode.Force);
+    //    //    playerFlying = true;
+    //    //    StartCoroutine(PlayerFlying(context.ReadValue<float>()));
+    //    //}
+    //}
 
-    public void PlayerFall(InputAction.CallbackContext context)
-    {
-        //if (playerFlying)
-        //{
-        //    Debug.Log("Fall" + context);
-        //    playerFlying = false;
-        //}
-    }
+    //public void PlayerFall(InputAction.CallbackContext context)
+    //{
+    //    //if (playerFlying)
+    //    //{
+    //    //    Debug.Log("Fall" + context);
+    //    //    playerFlying = false;
+    //    //}
+    //}
 
     //IEnumerator PlayerFlying(float inputValue)
     //{
@@ -211,7 +292,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void PlayerMove(InputAction.CallbackContext context)
     {
-        Debug.Log("Player Movement: " + inputActions.Standard.Movement.ReadValueAsObject());
+        //Debug.Log("Player Movement: " + inputActions.Standard.Movement.ReadValueAsObject());
         //Debug.Log("Move" + context);
     }
 
@@ -224,6 +305,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // Debug.Log("Look" + context);
     }
+    #endregion
     #endregion
     #endregion
 }
