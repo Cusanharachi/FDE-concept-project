@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
     private float modifiedPlayerRotationInput = new float();
 
     // Input action item so this script can handle input
-    InputActions inputActions;
+    public InputActions inputActions;
 
     // Variables that may be handled by other script(s)
     #region TempVariables

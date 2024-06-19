@@ -360,6 +360,7 @@
 "Assets/Crystal_Mine/Spline_Tool/Scripts/Path_Comp.cs"
 "Assets/Crystal_Mine/Spline_Tool/Scripts/Trail_Mesh.cs"
 "Assets/InputSystem/InputActions.cs"
+"Assets/Scripts/CharacterManager.cs"
 "Assets/Scripts/PlayerMovement.cs"
 "Assets/Scripts/PlayerStats.cs"
 -langversion:9.0

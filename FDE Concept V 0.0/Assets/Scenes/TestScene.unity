@@ -477,21 +477,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3634601671324215163, guid: 8f94bf9ed65e86b4b90b2e2312998455, type: 3}
-      propertyPath: playerRigidbody
-      value: 
-      objectReference: {fileID: 766180774}
-    - target: {fileID: 3634601671324215163, guid: 8f94bf9ed65e86b4b90b2e2312998455, type: 3}
-      propertyPath: playerMovementModifer
-      value: 1039.3
-      objectReference: {fileID: 0}
     - target: {fileID: 8089982235274279102, guid: 8f94bf9ed65e86b4b90b2e2312998455, type: 3}
       propertyPath: m_Name
       value: MaleCharacterPBR Variant
-      objectReference: {fileID: 0}
-    - target: {fileID: 8138730502669038799, guid: 8f94bf9ed65e86b4b90b2e2312998455, type: 3}
-      propertyPath: m_Constraints
-      value: 112
       objectReference: {fileID: 0}
     - target: {fileID: 8867221899999846916, guid: 8f94bf9ed65e86b4b90b2e2312998455, type: 3}
       propertyPath: m_LocalPosition.x
@@ -533,10 +521,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9135936593033712839, guid: 8f94bf9ed65e86b4b90b2e2312998455, type: 3}
-      propertyPath: m_Material
+    - target: {fileID: 8972307538633561950, guid: 8f94bf9ed65e86b4b90b2e2312998455, type: 3}
+      propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 13400000, guid: 8eafcae8083b8804e92fbaa2a5908c1e, type: 2}
+      objectReference: {fileID: 9100000, guid: 348c085797516f14c83db201618d53db, type: 2}
+    - target: {fileID: 9135936593033712839, guid: 8f94bf9ed65e86b4b90b2e2312998455, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -789,11 +781,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4338867686750646, guid: 8e2a80e35db1ddd4090f8cc5ca764511, type: 3}
   m_PrefabInstance: {fileID: 726675945}
-  m_PrefabAsset: {fileID: 0}
---- !u!54 &766180774 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 8138730502669038799, guid: 8f94bf9ed65e86b4b90b2e2312998455, type: 3}
-  m_PrefabInstance: {fileID: 613619164}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &771050530
 PrefabInstance:

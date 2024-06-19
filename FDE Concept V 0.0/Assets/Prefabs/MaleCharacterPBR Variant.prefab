@@ -334,7 +334,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8855052669661678444, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -2.21
       objectReference: {fileID: 0}
     - target: {fileID: 8855052669661678444, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
       propertyPath: m_LocalPosition.y
@@ -342,7 +342,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8855052669661678444, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -3.54
       objectReference: {fileID: 0}
     - target: {fileID: 8855052669661678444, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
       propertyPath: m_LocalRotation.w
@@ -399,6 +399,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8189980434977739222, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4269453445697027210}
+    - targetCorrespondingSourceObject: {fileID: 8189980434977739222, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1880367913407292728}
   m_SourcePrefab: {fileID: 100100000, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
 --- !u!1 &8089982235274279102 stripped
 GameObject:
@@ -430,7 +433,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &9135936593033712839
 CapsuleCollider:
@@ -439,7 +442,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8089982235274279102}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 8eafcae8083b8804e92fbaa2a5908c1e, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -467,11 +470,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73d7f4562b467344d89819de197cc66a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerRigidbody: {fileID: 0}
+  playerRigidbody: {fileID: 8138730502669038799}
   playerCamera: {fileID: 7827785159271292156}
   playerJumpModifer: 47.9
   playerFlyModifer: 30.2
-  playerMovementModifer: 100.5
+  playerMovementModifer: 1039.3
   playerRotationModifier: 95.5
 --- !u!114 &4269453445697027210
 MonoBehaviour:
@@ -547,6 +550,18 @@ MonoBehaviour:
   m_DefaultActionMap: Standard
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 7827785159271292156}
+--- !u!114 &1880367913407292728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8089982235274279102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a84baf4dfd882ae43914e8b47298a765, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8867221899999846916 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8855052669661678444, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}

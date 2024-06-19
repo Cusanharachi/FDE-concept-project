@@ -63,6 +63,7 @@
     <Compile Include="Assets\Crystal_Mine\Spline_Tool\Scripts\Trail_Mesh.cs" />
     <Compile Include="Assets\Crystal_Mine\Spline_Tool\Scripts\Path_Comp.cs" />
     <Compile Include="Assets\InputSystem\InputActions.cs" />
+    <Compile Include="Assets\Scripts\CharacterManager.cs" />
     <Compile Include="Assets\Crystal_Mine\Spline_Tool\Scripts\Math_Functions.cs" />
     <Compile Include="Assets\Crystal_Mine\Spline_Tool\Scripts\Mesh_Maker.cs" />
     <Compile Include="Assets\Scripts\PlayerStats.cs" />
