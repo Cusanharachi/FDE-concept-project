@@ -1,20 +1,3 @@
-namespace UnityEditor.TestTools.TestRunner.UnityTestProtocol
-{
-    internal class TestFinishedMessage : Message
-    {
-        public string name;
-        public TestState state;
-        public string message;
-        public ulong duration; // milliseconds
-        public ulong durationMicroseconds;
-        public string stackTrace;
-        public string fileName;
-        public int lineNumber;
-
-        public TestFinishedMessage()
-        {
-            type = "TestStatus";
-            phase = "End";
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:4cba8a025ecaaa7c034a6abfed76dcfc9838224dbc46ac0768db572eb8ea5a4c
+size 522

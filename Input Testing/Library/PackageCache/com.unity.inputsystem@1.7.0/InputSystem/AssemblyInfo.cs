@@ -1,21 +1,3 @@
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using UnityEngine.InputSystem;
-
-[assembly: AssemblyVersion(InputSystem.kAssemblyVersion)]
-[assembly: InternalsVisibleTo("Unity.InputSystem.TestFramework")]
-[assembly: InternalsVisibleTo("Unity.InputSystem.Tests.Editor")]
-[assembly: InternalsVisibleTo("Unity.InputSystem.Tests")]
-[assembly: InternalsVisibleTo("Unity.InputSystem.IntegrationTests")]
-
-namespace UnityEngine.InputSystem
-{
-    public static partial class InputSystem
-    {
-        // Keep this in sync with "Packages/com.unity.inputsystem/package.json".
-        // NOTE: Unfortunately, System.Version doesn't use semantic versioning so we can't include
-        //       "-preview" suffixes here.
-        internal const string kAssemblyVersion = "1.7.0";
-        internal const string kDocUrl = "https://docs.unity3d.com/Packages/com.unity.inputsystem@1.7";
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:41de754fe1e403dd1f0e1b7f20077828903bac50e11be80912c49888babcae96
+size 891

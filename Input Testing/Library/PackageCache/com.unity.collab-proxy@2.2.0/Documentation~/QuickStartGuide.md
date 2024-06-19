@@ -1,9 +1,3 @@
-# Quick start guide
-
-The Version Control package will allow you to use Unity Version Control (Unity VCS) for your projects in the Unity Editor.
-
-Unity VCS integrates version control in Unity that will abstract version control complexity. It will also enable you to work collaboratively on more complex projects by providing additional VCS features such as branching, locking, merging, and a standalone GUI.
-
-The Version Control package follows the Unity support schedule. Currently, the minimum supported version of the Unity Editor is 2021.3 LTS.
-
-[Getting started with Unity version control](StartPlasticForUnity.md)
+version https://git-lfs.github.com/spec/v1
+oid sha256:d9d83384e3da166f9f9604bc76d0a72e640a08b6277c84e7f07ef2bc9acdec5f
+size 619

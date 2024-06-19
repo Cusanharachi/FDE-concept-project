@@ -1,36 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.InputSystem;
-
-public class CharacterManager : MonoBehaviour
-{
-    // Class to Disable Living Player for secondary Player to work.
-    [SerializeField]
-    PlayerMovement livingPlayerMovementScript;
-    [SerializeField]
-
-    // Input action item so this script can handle input
-    InputActions inputActions;
-
-
-    // Start is called before the first frame update
-    void Awake()
-    {
-        if (livingPlayerMovementScript != null)
-        {
-            inputActions = livingPlayerMovementScript.inputActions;
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void CreateSecondForm()
-    {
-        
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:008812a913cf870b6c44dcc877972604e3269dafa58711033cf8bd44b1fc9e2b
+size 763

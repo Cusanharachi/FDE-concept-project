@@ -1,23 +1,3 @@
-using UnityEngine;
-using UnityEngine.InputSystem;
-public class ExampleDirect : MonoBehaviour
-{
-    void Update()
-    {
-        var gamepad = Gamepad.current;
-        if (gamepad == null)
-        {
-            return; // No gamepad connected.
-        }
-
-        if (gamepad.rightTrigger.wasPressedThisFrame)
-        {
-            // 'Use' code here
-        }
-
-        Vector2 move = gamepad.leftStick.ReadValue();
-        {
-            // 'Move' code here
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:124aaf73674b69d3b97c31785236eb57fcccb188003385fc8c109d9fcac07898
+size 473

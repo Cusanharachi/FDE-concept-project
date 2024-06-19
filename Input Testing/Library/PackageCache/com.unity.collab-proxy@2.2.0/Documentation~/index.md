@@ -1,7 +1,3 @@
-# About Version Control
-
-The Version Control package provides an in-editor interface for teams to work with Unity Version Control (Unity VCS).
-
-## Unity Version Control
-
-It is a free Unity plug-in that gives you the ability to use Unity VCS, a leading version control solution, directly in Unity. Get started with [Unity VCS](QuickStartGuide.md).
+version https://git-lfs.github.com/spec/v1
+oid sha256:c70f4640088a714acdd3e53e9405081c77e1e8f99a34d075e64caaf91b4ef13a
+size 347

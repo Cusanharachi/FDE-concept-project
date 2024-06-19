@@ -1,10 +1,3 @@
-using System.Reflection;
-using System.Runtime.CompilerServices;
-
-// Keep this in sync with "Packages/com.unity.inputsystem/package.json".
-// NOTE: Unfortunately, System.Version doesn't use semantic versioning so we can't include
-//       "-preview" suffixes here.
-[assembly: AssemblyVersion("1.7.0")]
-[assembly: InternalsVisibleTo("Unity.InputSystem.Tests.Editor")]
-[assembly: InternalsVisibleTo("Unity.InputSystem.Tests")]
-[assembly: InternalsVisibleTo("Unity.InputSystem.IntegrationTests")]
+version https://git-lfs.github.com/spec/v1
+oid sha256:48d277ea03a8b247654396b17f9bd9c2d2971dff6cedbcd542b0f0baf48b001a
+size 493

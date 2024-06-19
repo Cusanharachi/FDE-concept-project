@@ -1,5 +1,3 @@
-sceneSetups:
-- path: Assets/InputDeviceTester/InputDeviceTester.unity
-  isLoaded: 1
-  isActive: 1
-  isSubScene: 0
+version https://git-lfs.github.com/spec/v1
+oid sha256:3c066c3616651870565b46bb5556dc90a06bb9ae8dd031a50d62b149ca3076dc
+size 114

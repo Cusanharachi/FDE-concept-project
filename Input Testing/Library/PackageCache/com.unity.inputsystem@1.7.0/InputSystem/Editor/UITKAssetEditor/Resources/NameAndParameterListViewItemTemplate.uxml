@@ -1,6 +1,3 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
-    <Style src="project://database/Packages/com.unity.inputsystem/InputSystem/Editor/UITKAssetEditor/Resources/InputActionsEditorStyles.uss?fileID=7433441132597879392&amp;guid=7dac9c49a90bca4499371d0adc9b617b&amp;type=3#InputActionsEditorStyles" />
-    <ui:VisualElement style="margin-bottom: 0; border-bottom-width: 1px; padding-bottom: 5px;">
-        <ui:Foldout text="Foldout" name="Foldout" value="true" class="name-and-parameters-list-foldout" style="align-items: stretch;" />
-    </ui:VisualElement>
-</ui:UXML>
+version https://git-lfs.github.com/spec/v1
+oid sha256:7b22aa770f265821ec7aedb3a683e39a86940cb3d954f79e6686636c5aaedcd4
+size 815
